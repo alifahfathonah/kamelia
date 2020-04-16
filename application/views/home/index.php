@@ -21,25 +21,16 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <!--ACCESS MENUS FOR ADMIN-->
-                <?php if($this->session->userdata('role')==='1'):?>
                   <li class="active"><a href="#">Dashboard</a></li>
                   <li><a href="#">Posts</a></li>
                   <li><a href="#">Pages</a></li>
                   <li><a href="#">Media</a></li>
-                <!--ACCESS MENUS FOR STAFF-->
-                <?php elseif($this->session->userdata('role')==='2'):?>
                   <li class="active"><a href="#">Dashboard</a></li>
                   <li><a href="#">Pages</a></li>
                   <li><a href="#">Media</a></li>
-                <!--ACCESS MENUS FOR AUTHOR-->
-                <?php else:?>
-                  <li class="active"><a href="#">Dashboard</a></li>
-                  <li><a href="#">Posts</a></li>
-                <?php endif;?>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li><a href="<?php echo site_url('login/logout');?>">Sign Out</a></li>
+                <li><a href="<?php echo site_url('auth/logout');?>">Sign Out</a></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!--/.container-fluid -->

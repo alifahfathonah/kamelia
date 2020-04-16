@@ -3,6 +3,7 @@
 Web Organisai, Lia
 
 ## Config
+Download ini dulu
 
 Cari file database.php di application/config/database.php
 edit
