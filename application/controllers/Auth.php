@@ -21,18 +21,17 @@ class Auth extends CI_Controller{
             if ($this->user_model->doLogin()) {
 				// ambil role
 				$role = $this->session->userdata('role');
-				die($role);
 				// jika role = 1 ke halaman admin
                 if ($role === '1') {
-                    redirect('/home');
+                    redirect(site_url('/admin'));
 				} 
 				// jika role = 2 ke halaman subadmin
 				elseif ($role === '2') {
-                    redirect('/home/kom');
+					redirect(site_url('/home'));
 				} 
 				// jika ga ada gagal, balik ke login
 				else {
-                    redirect('/auth/login');
+                    redirect(site_url('auth/login'));
                 }
 			} 
 			// jika data ga ada, gagal login, balik ke login
