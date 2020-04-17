@@ -3,7 +3,7 @@ class User_model extends CI_Model{
 
     public function __construct()
     {
-        // $this->load->database();
+        
     }
 
     // define table
@@ -88,12 +88,16 @@ class User_model extends CI_Model{
 
     public function save()
     {
+        // ambil input yang metodenya post
         $post = $this->input->post();
+        // diinisiasi di variabel yang sudah ditulis di atas
         $this->username = $post["username"];
+        // password nya di hash menggunakan bcrypt agar tidak dikirim di database dalam keadaan teks utuh, biar aman
         $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
         $this->nama = $post["nama"];
         $this->email = $post["email"];
         $this->role = $post["role"];
+        // insert data ke table
         return $this->db->insert($this->_table, $this);
     }
 }

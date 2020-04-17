@@ -4,9 +4,6 @@
 <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
 </head>
 <body>
-
-<?php echo validation_errors(); ?>
-
     <div class="container">
         <?php if ($this->session->flashdata('user_added')): ?>
             <div class="alert alert-success" role="alert">

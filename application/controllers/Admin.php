@@ -20,6 +20,7 @@ class Admin extends CI_Controller{
     }
 
     public function index(){
+        // menampilkan halaman index admin
         $this->load->view("admin/index.php");
     }
 
@@ -30,16 +31,24 @@ class Admin extends CI_Controller{
     }
 
     public function addUser(){
+        // membuat objek dari user_model di $user 
         $user = $this->user_model;
+        // menginisiasi validation
         $validation = $this->form_validation;
+        // validasi data
         $validation->set_rules($user->rules());
 
+        // cek jika berhasil input atau sudah di post
         if ($this->form_validation->run())
         {
+            // save data menggunakan method atau fungsi dari model user
             $user->save();
+            // tambahkan session user_added kalo sudah berhasil menambahkan user
             $this->session->set_flashdata('user_added', 'Berhasil ditambahkan');
+            // di redirect ke halaman admin index
             redirect(site_url('admin'));
         }
+        // jika pertama kali buka akan menampilkan halaman adduser.php
         $this->load->view("admin/adduser.php");
     }
 }
