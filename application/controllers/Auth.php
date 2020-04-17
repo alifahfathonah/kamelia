@@ -42,13 +42,13 @@ class Auth extends CI_Controller{
 				} 
 				// jika ga ada gagal, balik ke login
 				else {
-                    redirect(site_url('auth/login'));
+                    redirect(site_url('login'));
                 }
 			} 
 			// jika data ga ada, gagal login, balik ke login
 			else {
                 echo $this->session->set_flashdata('msg', 'Username or Password is Wrong');
-				redirect(site_url('auth/login'));
+				redirect(site_url('login'));
             }
 
         }

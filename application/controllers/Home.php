@@ -8,8 +8,8 @@ class Home extends CI_Controller {
         $this->load->model("user_model");
         // cek, udah login belum
         if ($this->user_model->isNotLogin()) {
-            // kalo belum login, redirect ke /auth/login
-            redirect(site_url('auth/login'));
+            // kalo belum login, redirect ke /login
+            redirect(site_url('login'));
         }
         // cek role
         if ($this->session->userdata('role') == '1'){

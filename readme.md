@@ -6,16 +6,16 @@ Web Organisai, Lia
 Download ini dulu
 
 Buka file ```database.php``` di ```application/config/database.php```  
-__edit__
+__EDIT:__
 ```php
 'hostname' => 'localhost',
 'username' => 'root',
 'password' => 'root',
 'database' => 'kamelia',
 ```
-Disesuaikan dengan setting database di xampp mu, biasanya password kosongan
+Disesuaikan dengan setting database di xampp mu, biasanya password kosongan  
 Buka file ```config.php``` di ```application/config/config.php```  
-__edit__
+__EDIT:__
 
 ```php
 $config['base_url'] = 'http://kamelia.id'; 

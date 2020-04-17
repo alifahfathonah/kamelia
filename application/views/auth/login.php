@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login Admin</title>
+    <title>Login User</title>
 
     <!-- Bootstrap core CSS-->
     <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 col-md-6 text-center mt-5 mx-auto p-4">
-                <h1 class="h2">Login Admin</h1>
+                <h1 class="h2">Login User</h1>
                 <p class="lead">Silahkan masuk</p>
             </div>
         </div>
