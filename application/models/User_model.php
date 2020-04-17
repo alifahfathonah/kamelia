@@ -8,6 +8,13 @@ class User_model extends CI_Model{
 
     // define table
     private $_table = "user";
+    function dump($var, $die=FALSE)
+    {
+        echo '<pre>';
+        var_dump($var);
+        echo '</pre>';
+        if ($die) die;
+    }
     
     // buat methd untuk login
     public function doLogin(){
@@ -16,7 +23,7 @@ class User_model extends CI_Model{
         // cari user berdasarkan email dan username
         $this->db->where('username', $post["username"])
             ->or_where('email', $post["username"]);
-        $user = $this->db->get($this->table)->row();
+        $user = $this->db->get($this->_table)->row();
 
         // jika user terdaftar
         if ($user) {
@@ -26,14 +33,13 @@ class User_model extends CI_Model{
             // jika password benar dan dia admin
             if ($isPasswordTrue) {
                 // login sukses yay!
-                $this->session->set_userdata(['user_logged' => $user]);
-                //       $sesdata = array(
-                //    'username'  => $user->username,
-                //    'nama'      => $user->nama,
-                //    'role'        => $user->role,
-                //    'logged_in' => TRUE
-                // );
-                // $this->session->set_userdata($sesdata);
+                $sesdata = array(
+                   'username'  => $user->username,
+                   'nama'      => $user->nama,
+                   'role'      => $user->role,
+                   'logged_in' => TRUE
+                );
+                $this->session->set_userdata($sesdata);
                 return true;
             }
         }

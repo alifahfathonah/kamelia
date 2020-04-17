@@ -8,10 +8,12 @@ class Auth extends CI_Controller{
         parent::__construct();
         $this->load->model('user_model');
         $this->load->library('form_validation');
+        if ($this->session->userdata('logged_in') != null & $this->session->userdata('role') == '2') redirect(site_url('home'));
+        if ($this->session->userdata('logged_in') != null & $this->session->userdata('role') == '1') redirect(site_url('admin'));
 	}
 	
 	public function index(){
-		echo "Ha";
+		echo "Has";
 	}
 
     public function login(){
@@ -20,7 +22,7 @@ class Auth extends CI_Controller{
 			// validasi input lewat doLogin di models/user_model.php
             if ($this->user_model->doLogin()) {
 				// ambil role
-				$role = $this->session->userdata('role');
+                $role = $this->session->userdata('role');
 				// jika role = 1 ke halaman admin
                 if ($role === '1') {
                     redirect(site_url('/admin'));
@@ -43,11 +45,5 @@ class Auth extends CI_Controller{
         }
         // jika tidak ada yang disubmit, menampilkan:
         $this->load->view("auth/login.php");
-    }
-
-    public function logout(){
-		// menghapus session
-        $this->session->sess_destroy();
-        redirect('/');
     }
 }

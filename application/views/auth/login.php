@@ -22,6 +22,7 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-5 mx-auto mt-5">
+                <?php echo $this->session->flashdata('msg');?>
                 <form action="<?= site_url('/auth/login') ?>" method="POST">
                     <div class="form-group">
                         <label for="username">username</label>
