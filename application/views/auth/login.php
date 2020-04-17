@@ -17,12 +17,16 @@
         <div class="row">
             <div class="col-12 col-md-6 text-center mt-5 mx-auto p-4">
                 <h1 class="h2">Login Admin</h1>
-                <p class="lead">Silahkan masuk ke Panel Admin</p>
+                <p class="lead">Silahkan masuk</p>
             </div>
         </div>
         <div class="row">
             <div class="col-12 col-md-5 mx-auto mt-5">
-                <?php echo $this->session->flashdata('msg');?>
+                <?php if ($this->session->flashdata('msg')): ?>
+                    <div class="alert alert-warning" role="alert">
+                        <?php echo $this->session->flashdata('msg'); ?>
+                    </div>
+                <?php endif; ?>
                 <form action="<?= site_url('/auth/login') ?>" method="POST">
                     <div class="form-group">
                         <label for="username">username</label>
@@ -31,15 +35,6 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" name="password" placeholder="Password.." required />
-                    </div>
-                    <div class="form-group">
-                        <div class="d-flex justify-content-between">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" name="rememberme" id="rememberme" />
-                                <label class="custom-control-label" for="rememberme"> Ingat Saya</label>
-                            </div>
-                            <a href="<?= site_url('reset_password') ?>">Lupa Password?</a>
-                        </div>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-success w-100" value="Login" />

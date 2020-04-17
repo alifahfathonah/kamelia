@@ -22,4 +22,9 @@ $config['base_url'] = 'http://kamelia.id';
 ```
 ```kamelia.id``` disesuaikan dengan ```http://localhost/ismi``` -> kalo nama foldernya ```ismi```
 
+## Progress
+1. Login Admin & Sub Admin __DONE__
+2. Admin add new user __DONE__
+3. User add kegiatan __TO-DO__
+
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)

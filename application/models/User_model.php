@@ -8,6 +8,37 @@ class User_model extends CI_Model{
 
     // define table
     private $_table = "user";
+    // definisi variabel yang sesuai dengan nama kolom di tabel user
+    public $nama;
+    public $username;
+    public $password;
+    public $role = "2";
+
+    // aturan untuk validasi input
+    public function rules()
+    {
+        return [
+            ['field' => 'nama',
+            'label' => 'Nama',
+            'rules' => 'required'],
+
+            ['field' => 'username',
+            'label' => 'Username',
+            'rules' => 'required|is_unique[user.email]'],
+            
+            ['field' => 'password',
+            'label' => 'Password',
+            'rules' => 'required'],
+
+            ['field' => 'email',
+            'label' => 'Email',
+            'rules' => 'required|valid_email|is_unique[user.email]'],
+
+            ['field' => 'role',
+            'label' => 'Role',
+            'rules' => 'required'],
+        ];
+    }
     // fungsi untuk debugging
     function dump($var, $die=FALSE)
     {
@@ -55,4 +86,14 @@ class User_model extends CI_Model{
         return $this->session->userdata('logged_in') === null;
     }
 
+    public function save()
+    {
+        $post = $this->input->post();
+        $this->username = $post["username"];
+        $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
+        $this->nama = $post["nama"];
+        $this->email = $post["email"];
+        $this->role = $post["role"];
+        return $this->db->insert($this->_table, $this);
+    }
 }

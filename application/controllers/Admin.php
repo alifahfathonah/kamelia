@@ -6,6 +6,7 @@ class Admin extends CI_Controller{
         parent::__construct();
         // load model
         $this->load->model("user_model");
+        $this->load->library('form_validation');
         // cek, udah login belum
         if ($this->user_model->isNotLogin()) {
             // kalo belum login, redirect ke /auth/login
@@ -19,7 +20,7 @@ class Admin extends CI_Controller{
     }
 
     public function index(){
-        echo "Welcome, Admin ".$this->session->userdata('username');
+        $this->load->view("admin/index.php");
     }
 
     public function logout(){
@@ -28,5 +29,17 @@ class Admin extends CI_Controller{
         redirect(site_url('/'));
     }
 
-    public function
+    public function addUser(){
+        $user = $this->user_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($user->rules());
+
+        if ($this->form_validation->run())
+        {
+            $user->save();
+            $this->session->set_flashdata('user_added', 'Berhasil ditambahkan');
+            redirect(site_url('admin'));
+        }
+        $this->load->view("admin/adduser.php");
+    }
 }
