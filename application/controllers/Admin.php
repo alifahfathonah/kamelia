@@ -6,10 +6,16 @@ class Admin extends CI_Controller{
         parent::__construct();
         // load model
         $this->load->model("user_model");
-        // kalo ga login, langsung di redirect ke halaman login
-        if ($this->user_model->isNotLogin()) redirect(site_url('auth/login'));
-        // kalo login tapi role nya ga 2(kom), langsung di redirect ke halaman login
-        if ($this->session->userdata('role') != '1') redirect(site_url('auth/login'));
+        // cek, udah login belum
+        if ($this->user_model->isNotLogin()) {
+            // kalo belum login, redirect ke /auth/login
+            redirect(site_url('auth/login'));
+        }
+        // cek role
+        if ($this->session->userdata('role') == '2'){
+            // kalo role 2(home) redirect ke /home
+            redirect(site_url('home'));
+        }
     }
 
     public function index(){
@@ -19,6 +25,8 @@ class Admin extends CI_Controller{
     public function logout(){
 		// menghapus session
         $this->session->sess_destroy();
-        redirect('/');
+        redirect(site_url('/'));
     }
+
+    public function
 }

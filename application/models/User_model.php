@@ -8,6 +8,7 @@ class User_model extends CI_Model{
 
     // define table
     private $_table = "user";
+    // fungsi untuk debugging
     function dump($var, $die=FALSE)
     {
         echo '<pre>';
@@ -48,9 +49,10 @@ class User_model extends CI_Model{
         return false;
     }
 
+    // untuk cek kalo belum login
     public function isNotLogin()
     {
-        return $this->session->userdata('user_logged') === null;
+        return $this->session->userdata('logged_in') === null;
     }
 
 }

@@ -8,9 +8,18 @@ class Auth extends CI_Controller{
         parent::__construct();
         $this->load->model('user_model');
         $this->load->library('form_validation');
-        if ($this->session->userdata('logged_in') != null & $this->session->userdata('role') == '2') redirect(site_url('home'));
-        if ($this->session->userdata('logged_in') != null & $this->session->userdata('role') == '1') redirect(site_url('admin'));
-	}
+        // cek, udah login belum
+        if (!$this->user_model->isNotLogin()) {
+            // kalo udah, cek role nya. kalo 1(admin) redirect ke /admin
+            if ($this->session->userdata('role') == '1'){
+                redirect(site_url('admin'));
+            }
+            // kalo role 2(kom) redirect ke /home
+            else {
+                redirect(site_url('home'));
+            }
+        }
+    }
 	
 	public function index(){
 		echo "Has";
