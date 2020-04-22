@@ -25,6 +25,11 @@ $config['base_url'] = 'http://kamelia.id';
 ## Progress
 1. Login Admin & Sub Admin __DONE__
 2. Admin add new user __DONE__
-3. User add kegiatan __TO-DO__
+3. Admin add kegiatan __DONE__
+4. Admin add jenis __DONE__
+5. Subadmin add kegiatan __TO-DO__
+6. Add user list view in admin __TO-DO__
+7. Add kegiatan list view in admin __TO-DO__
+8. Add calendar __TO-DO__
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)

@@ -11,13 +11,13 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-6 text-center mt-2 mx-auto p-4">
+            <div class="col-12 text-center mt-2 mx-auto p-4">
                 <h1 class="h2">Tambah Kegiatan</h1>
                 <p class="lead">Isi data dengan benar</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-8 col-md-8 mx-auto p-4">
+            <div class="col-md-6 offset-md-3  mx-auto p-4">
             <?php if (validation_errors()): ?>
                 <div class="alert alert-warning" role="alert">
                     <?php echo validation_errors(); ?>
