@@ -22,8 +22,14 @@ class Auth extends CI_Controller{
     }
 	
 	public function index(){
-		echo "Has";
-	}
+        return show_404();
+    }
+    
+    public function gen(){
+        $this->user_model->generateAdmin();
+        // echo "Admin created! <br> <a href='"+site_url('/')+"'>Click here</a>";
+        echo "Hah";
+    }
 
     public function login(){
         // jika form login disubmit

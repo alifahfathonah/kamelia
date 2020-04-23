@@ -86,6 +86,24 @@ class User_model extends CI_Model{
         return $this->session->userdata('logged_in') === null;
     }
 
+    public function generateAdmin(){
+        $data = [
+            "username" => "kamelia",
+            "password" => password_hash("kamelia99429", PASSWORD_DEFAULT),
+            "nama" => "Ismi Kamelia Najib Putri",
+            "email" => "ismykamelia@gmail.com",
+            "role" => 1
+        ];
+
+        $this->db->where("username", $data["username"]);
+        $admin = $this->db->get($this->_table)->row();
+        if (!$admin) {
+            return $this->db->insert($this->_table, $data);
+        }
+        // return $this->db->insert($this->_table, $data);
+        redirect(site_url('/login'));
+    }
+
     public function save()
     {
         // ambil input yang metodenya post
