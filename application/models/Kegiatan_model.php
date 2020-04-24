@@ -79,6 +79,10 @@ class Kegiatan_model extends CI_Model{
         return $this->db->get($this->_table_jenis)->result();
     }
 
+    public function getJenis($jenis){
+        return $this->db->get_where($this->_table_jenis, ["id" => $jenis])->row()->nama;
+    }
+
     public function saveJenis()
     {
         // ambil input yang metodenya post
@@ -107,5 +111,9 @@ class Kegiatan_model extends CI_Model{
         $this->review = null;
         // insert data ke table
         return $this->db->insert($this->_table, $this);
+    }
+
+    public function kegiatanAll(){
+        return $this->db->get($this->_table)->result();
     }
 }
