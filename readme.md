@@ -31,6 +31,6 @@ $config['base_url'] = 'http://kamelia.id';
 6. Subadmin add kegiatan __TO-DO__
 7. Add user list view in admin __TO-DO__
 8. Add kegiatan list view in admin __TO-DO__
-9. Add calendar __TO-DO__
+9. Add calendar __DONE__
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)
