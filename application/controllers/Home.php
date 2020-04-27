@@ -6,6 +6,7 @@ class Home extends CI_Controller {
         parent::__construct();
         // load model
         $this->load->model("user_model");
+        $this->load->model("kegiatan_model");
         // cek, udah login belum
         if ($this->user_model->isNotLogin()) {
             // kalo belum login, redirect ke /login
@@ -19,7 +20,9 @@ class Home extends CI_Controller {
     }
 
     public function index(){
-        echo "Welcome, ".$this->session->userdata('username');
+        // menampilkan halaman index subadmin
+        $data['kegiatan'] = $this->kegiatan_model->kegiatanAll();
+        $this->load->view("home/index.php", $data);
     }
 
     public function logout(){
