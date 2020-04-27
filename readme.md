@@ -28,9 +28,11 @@ $config['base_url'] = 'http://kamelia.id';
 3. Admin add kegiatan __DONE__
 4. Admin add jenis __DONE__
 5. Generate first admin __DONE__
-6. Subadmin add kegiatan __TO-DO__
-7. Add user list view in admin __TO-DO__
-8. Add kegiatan list view in admin __TO-DO__
-9. Add calendar __DONE__
+6. Datatable in subadmin __DONE__
+7. Subadmin add kegiatan __TO-DO__
+8. Add user list view in admin __TO-DO__
+9. Add kegiatan list view in admin __TO-DO__
+10. Add calendar __DONE__
+11. Admin and subadmin do review __TO-DO__
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)
