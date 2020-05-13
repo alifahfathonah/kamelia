@@ -52,6 +52,11 @@ class User_model extends CI_Model{
     public function doLogin(){
         $post = $this->input->post();
 
+        // prevent bypass strcmp array
+        foreach ($post as $value ) {
+            if (!is_string($val)) redirect(site_url('/login'));
+        }
+
         // cari user berdasarkan email dan username
         $this->db->where('username', $post["username"])
             ->or_where('email', $post["username"]);
