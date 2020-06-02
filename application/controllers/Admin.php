@@ -57,8 +57,12 @@ class Admin extends CI_Controller{
         $this->load->view("admin/adduser.php");
     }
 
-    public function kegiatan(){
-        echo 'hai kegiatan';
+    public function kegiatanList(){
+        $kegiatan = $this->kegiatan_model;
+        $data["kegiatan"] = $kegiatan->kegiatanAll();
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"] = $this->session->userdata('role');
+        $this->load->view("kegiatan/index.php", $data);
     }
 
     public function addKegiatan(){
@@ -76,8 +80,8 @@ class Admin extends CI_Controller{
             $kegiatan->save();
             // tambahkan session kegiatan_added kalo sudah berhasil menambahkan kegiatan
             $this->session->set_flashdata('kegiatan_added', 'Berhasil ditambahkan');
-            // di redirect ke halaman admin index
-            redirect(site_url('admin'));
+            // di redirect ke halaman admin kegiatan list
+            redirect(site_url('admin/kegiatan'));
         }
         // load fungsi untuk pake 'date'
         $this->load->helper('date');
@@ -85,13 +89,44 @@ class Admin extends CI_Controller{
         $data["date"] = mdate("%Y-%m-%d %h:%i %A");
         // jenis ini kan dari table yang lain, perlu diambil dulu datanya untuk ditampilkan jadi bentuk select option
         $data["jenis"] = $kegiatan->jenis();
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
         $data["role"] = $this->session->userdata('role');
         // jika pertama kali buka akan menampilkan halaman addkegiatan.php dan mengirim data yang akan digunakan di view
         $this->load->view("kegiatan/addkegiatan.php", $data);
     }
 
-    public function updateKegiatan(){
+    public function updateKegiatan($id){
+        // jika $id tidak diisi akan di redirect ke halaman daftar kegiatan
+        if (!isset($id)) redirect('admin/kegiatan');
         
+        // membuat objek dari kegiatan_model di $kegiatan
+        $kegiatan = $this->kegiatan_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($kegiatan->rules());
+
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run())
+        {
+            // update data menggunakan method atau fungsi dari model kegiatan
+            $kegiatan->update();
+            // tambahkan session kegiatan_updated kalo sudah berhasil menambahkan kegiatan
+            $this->session->set_flashdata('kegiatan_updated', 'Berhasil disunting');
+            // di redirect ke halaman admin kegiatan list
+            redirect(site_url('admin/kegiatan'));
+        }
+
+        // ambil data kegiatan berdasarkan id
+        $data["kegiatan"] = $kegiatan->getById($id);
+        // jenis ini kan dari table yang lain, perlu diambil dulu datanya untuk ditampilkan jadi bentuk select option
+        $data["jenis"] = $kegiatan->jenis();
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"] = $this->session->userdata('role');
+
+        if (!$data["kegiatan"]) show_404();
+        
+        $this->load->view("kegiatan/editkegiatan.php", $data);
     }
 
     public function addJenis(){

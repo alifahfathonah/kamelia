@@ -113,6 +113,28 @@ class Kegiatan_model extends CI_Model{
         return $this->db->insert($this->_table, $this);
     }
 
+    public function update(){
+        // ambil input yang metodenya post
+        $post = $this->input->post();
+        // diinisiasi di variabel yang sudah ditulis di atas
+        $this->jenis_id = $post["jenis_id"];
+        $this->nama = $post["nama"];
+        $this->deskripsi = $post["deskripsi"];
+        $this->lokasi = $post["lokasi"];
+        $this->pembicara = $post["pembicara"];
+        $this->pj = $post["pj"];        
+        $this->catatan = $post["catatan"];
+        $this->waktu = $post["waktu"];
+        // Status 1 karena belum terlaksana. 1 = diajukan, 2 = selesai, 3 = gagal
+        $this->status = 1;
+        $this->review = null;
+        return $this->db->update($this->_table, $this, array('id' => $post['id']));
+    }
+
+    public function getById($id){
+        return $this->db->get_where($this->_table, ["id" => $id])->row();
+    }
+
     // ambil semua data kegiatan
     public function kegiatanAll(){
         return $this->db->get($this->_table)->result();

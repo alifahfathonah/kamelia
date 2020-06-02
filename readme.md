@@ -29,11 +29,16 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Admin add jenis
 * [x] Generate first admin
 * [x] Datatable in subadmin
-* [ ] Edit kegiatan
+* [x] Edit kegiatan
+* [x] List kegiatan
 * [ ] Subadmin add kegiatan
 * [ ] Add user list view in admin
 * [ ] Add kegiatan list view in admin
 * [x] Add calendar
 * [ ] Admin and subadmin do review
+
+## Issue
+NAMA JENIS DI INDEX KEGIATAN BELUM TAMPIL DAN SEARCH DATATABLES BELUM JALAN
+ORDER DI LIST KEGIATAN MENYESUAIKAN DATATABLES
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)

@@ -61,10 +61,9 @@ $route['admin'] = 'admin/index';
 $route['admin/logout'] = 'admin/logout';
 $route['admin/user'] = 'admin/user';
 $route['admin/user/add'] = 'admin/addUser';
-$route['admin/kegiatan'] = 'admin/kegiatan';
+$route['admin/kegiatan'] = 'admin/kegiatanList';
 $route['admin/kegiatan/add'] = 'admin/addKegiatan';
-$route['admin/kegiatan/edit'] = 'admin/kegiatan';
-$route['admin/kegiatan/:num'] = 'admin/updateKegiatan';
+$route['admin/kegiatan/edit/(:num)'] = 'admin/updateKegiatan/$1';
 $route['admin/jenis/add'] = 'admin/addJenis';
 // route subadmin
 $route['home'] = 'home/index';

@@ -10,11 +10,6 @@
                 <?php echo $this->session->flashdata('user_added'); ?>
             </div>
         <?php endif; ?>
-        <?php if ($this->session->flashdata('kegiatan_added')): ?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $this->session->flashdata('kegiatan_added'); ?>
-            </div>
-        <?php endif; ?>
         <?php if ($this->session->flashdata('jenis_added')): ?>
             <div class="alert alert-success" role="alert">
                 <?php echo $this->session->flashdata('jenis_added'); ?>
