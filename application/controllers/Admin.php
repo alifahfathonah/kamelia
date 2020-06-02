@@ -90,6 +90,10 @@ class Admin extends CI_Controller{
         $this->load->view("kegiatan/addkegiatan.php", $data);
     }
 
+    public function updateKegiatan(){
+        
+    }
+
     public function addJenis(){
         // membuat objek dari kegiatan_model di $kegiatan
         $kegiatan = $this->kegiatan_model;

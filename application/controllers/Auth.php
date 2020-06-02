@@ -53,7 +53,7 @@ class Auth extends CI_Controller{
 			} 
 			// jika data ga ada, gagal login, balik ke login
 			else {
-                echo $this->session->set_flashdata('msg', 'Username or Password is Wrong');
+                $this->session->set_flashdata('msg', 'Username or Password is Wrong');
 				redirect(site_url('login'));
             }
 

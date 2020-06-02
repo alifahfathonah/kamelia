@@ -27,7 +27,7 @@
                         <?php echo $this->session->flashdata('msg'); ?>
                     </div>
                 <?php endif; ?>
-                <form action="<?= site_url('/auth/login') ?>" method="POST">
+                <form action="" method="POST">
                     <div class="form-group">
                         <label for="username">username</label>
                         <input type="text" class="form-control" name="username" placeholder="Pakai username juga bisa.." required />

@@ -54,7 +54,10 @@ class User_model extends CI_Model{
 
         // prevent bypass strcmp array
         foreach ($post as $value ) {
-            if (!is_string($val)) redirect(site_url('/login'));
+            if (!is_string($value)){
+                $this->session->set_flashdata('msg', 'HAYOOOO');
+                redirect(site_url('/login'));
+            }
         }
 
         // cari user berdasarkan email dan username
