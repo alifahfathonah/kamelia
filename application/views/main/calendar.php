@@ -26,36 +26,30 @@
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        // right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        right: 'dayGridMonth'
       },
       defaultDate: '<?=$defaultDate?>',
       locale: 'id',
     //   selectable: true,
       selectMirror: true,
       disableDragging: true,
-      select: function(arg) {
-        var title = prompt('Event Title:');
-        if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-          })
-        }
-        calendar.unselect()
-      },
       timeFormat: 'H(:mm)',
       editable: false,
       droppable: false,
-      navLinks: true, // can click day/week names to navigate views
-      eventLimit: true, // allow "more" link when too many events
+      // navLinks: true, // can click day/week names to navigate views
+      // eventLimit: true, // allow "more" link when too many events
     //   textColor: 'white',
       events: {
         url: '<?=site_url('api/calendar')?>',
         failure: function() {
           document.getElementById('script-warning').style.display = 'block'
         }
+      },
+      eventTimeFormat: { // like '14:30:00'
+        hour: '2-digit',
+        minute: '2-digit',
+        // second: '2-digit',
       },
       eventClick: function(calEvent, jsEvent, view) {
         tanggal = moment(calEvent.event.start).format('DD/MM/YYYY');
@@ -65,8 +59,8 @@
         pembicara = calEvent.event.extendedProps.pembicara;
         pj = calEvent.event.extendedProps.pj;
         jenis = calEvent.event.extendedProps.jenis;
-        catatan = calEvent.event.extendedProps.catatan
-        deskripsi = calEvent.event.extendedProps.deskripsi
+        catatan = calEvent.event.extendedProps.catatan;
+        deskripsi = calEvent.event.extendedProps.deskripsi;
         review = (calEvent.event.extendedProps.review) ? calEvent.event.extendedProps.review : "-";
         $("#nama").text(nama);
         $("#waktu").text(tanggal+', '+waktu);
@@ -84,7 +78,7 @@
         // change the border color just for fun
         // $(this).css('border-color', 'red');
 
-    },
+      },
     });
 
     calendar.render();
