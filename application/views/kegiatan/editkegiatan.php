@@ -77,7 +77,7 @@
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker').datetimepicker({
-                format: 'YYYY-MM-DD hh:mm:ss',
+                format: 'YYYY-MM-DD HH:mm',
                 defaultDate: '<?= $kegiatan->waktu ?>'
             });
         });
