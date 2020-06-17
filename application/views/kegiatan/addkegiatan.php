@@ -23,7 +23,7 @@
                     <?php echo validation_errors(); ?>
                 </div>
             <?php endif; ?>
-                <?php echo form_open('admin/addkegiatan'); ?>
+                <?php echo form_open(); ?>
                     <div class="form-group">
                         <label for="nama">Nama Kegiatan</label>
                         <input type="text" class="form-control" name="nama" placeholder="Masukkan nama kegiatan" required />

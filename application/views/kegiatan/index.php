@@ -53,7 +53,8 @@
                         <td><?=$keg->status?></td>
                         <td><?=($keg->review == null ? 'Belum ada' : '$keg->review')?></td>
                         <td>
-                            <a href="<?= site_url('admin/kegiatan/edit/'.$keg->id) ?>" class="btn btn-success">Edit</a>
+                            <a href="<?= site_url($role == 1 ? 'admin' : 'home'.'/kegiatan/edit/'.$keg->id) ?>" 
+                            class="btn btn-success">Edit</a>
                         </td>
                     </tr>
                     <?php endforeach;?>

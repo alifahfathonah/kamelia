@@ -1,9 +1,10 @@
 <?php
-class User_model extends CI_Model{
+class User_model extends CI_Model
+{
 
     public function __construct()
     {
-        
+
     }
 
     // define table
@@ -19,42 +20,46 @@ class User_model extends CI_Model{
     {
         return [
             ['field' => 'nama',
-            'label' => 'Nama',
-            'rules' => 'required'],
+                'label'  => 'Nama',
+                'rules'  => 'required'],
 
             ['field' => 'username',
-            'label' => 'Username',
-            'rules' => 'required|is_unique[user.email]'],
-            
+                'label'  => 'Username',
+                'rules'  => 'required|is_unique[user.email]'],
+
             ['field' => 'password',
-            'label' => 'Password',
-            'rules' => 'required'],
+                'label'  => 'Password',
+                'rules'  => 'required'],
 
             ['field' => 'email',
-            'label' => 'Email',
-            'rules' => 'required|valid_email|is_unique[user.email]'],
+                'label'  => 'Email',
+                'rules'  => 'required|valid_email|is_unique[user.email]'],
 
             ['field' => 'role',
-            'label' => 'Role',
-            'rules' => 'required'],
+                'label'  => 'Role',
+                'rules'  => 'required'],
         ];
     }
     // fungsi untuk debugging
-    function dump($var, $die=FALSE)
+    public function dump($var, $die = false)
     {
         echo '<pre>';
         var_dump($var);
         echo '</pre>';
-        if ($die) die;
+        if ($die) {
+            die;
+        }
+
     }
-    
+
     // buat methd untuk login
-    public function doLogin(){
+    public function doLogin()
+    {
         $post = $this->input->post();
 
         // prevent bypass strcmp array
-        foreach ($post as $value ) {
-            if (!is_string($value)){
+        foreach ($post as $value) {
+            if (!is_string($value)) {
                 $this->session->set_flashdata('msg', 'HAYOOOO');
                 redirect(site_url('/login'));
             }
@@ -74,10 +79,11 @@ class User_model extends CI_Model{
             if ($isPasswordTrue) {
                 // login sukses yay!
                 $sesdata = array(
-                   'username'  => $user->username,
-                   'nama'      => $user->nama,
-                   'role'      => $user->role,
-                   'logged_in' => TRUE
+                    'userid'  => $user->id,
+                    'username'  => $user->username,
+                    'nama'      => $user->nama,
+                    'role'      => $user->role,
+                    'logged_in' => true,
                 );
                 $this->session->set_userdata($sesdata);
                 return true;
@@ -94,13 +100,14 @@ class User_model extends CI_Model{
         return $this->session->userdata('logged_in') === null;
     }
 
-    public function generateAdmin(){
+    public function generateAdmin()
+    {
         $data = [
             "username" => "kamelia",
             "password" => password_hash("kamelia99429", PASSWORD_DEFAULT),
-            "nama" => "Ismi Kamelia Najib Putri",
-            "email" => "ismykamelia@gmail.com",
-            "role" => 1
+            "nama"     => "Ismi Kamelia Najib Putri",
+            "email"    => "ismykamelia@gmail.com",
+            "role"     => 1,
         ];
 
         $this->db->where("username", $data["username"]);
@@ -120,9 +127,9 @@ class User_model extends CI_Model{
         $this->username = $post["username"];
         // password nya di hash menggunakan bcrypt agar tidak dikirim di database dalam keadaan teks utuh, biar aman
         $this->password = password_hash($post["password"], PASSWORD_DEFAULT);
-        $this->nama = $post["nama"];
-        $this->email = $post["email"];
-        $this->role = $post["role"];
+        $this->nama     = $post["nama"];
+        $this->email    = $post["email"];
+        $this->role     = $post["role"];
         // insert data ke table
         return $this->db->insert($this->_table, $this);
     }

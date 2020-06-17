@@ -132,8 +132,14 @@ class Kegiatan_model extends CI_Model{
         return $this->db->update($this->_table, $this, array('id' => $post['id']));
     }
 
+    // ambil data kegiatan dengan id
     public function getById($id){
         return $this->db->get_where($this->_table, ["id" => $id])->row();
+    }
+
+    // ambil data kegiatan dengan id dan punya user
+    public function getByIdOwner($id, $user){
+        return $this->db->get_where($this->_table, ["id" => $id, "user_id" => $user])->row();
     }
 
     // ambil semua data kegiatan
@@ -141,6 +147,12 @@ class Kegiatan_model extends CI_Model{
         return $this->db->get($this->_table)->result();
     }
 
+    // ambil berdasarkan subadmin yang login
+    public function kegiatanByOwner($user){
+        return $this->db->get_where($this->_table, ["user_id" => $user])->result();
+    }
+
+    // ambil nama pemilik kegiatan
     public function getOwner($user){
         return $this->db->get_where($this->_table_user, ["id" => $user])->row()->nama;
     }

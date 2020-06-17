@@ -67,6 +67,8 @@ $route['admin/kegiatan/edit/(:num)'] = 'admin/updateKegiatan/$1';
 $route['admin/jenis/add'] = 'admin/addJenis';
 // route subadmin
 $route['home'] = 'home/index';
+$route['home/kegiatan'] = 'home/kegiatanList';
+$route['home/kegiatan/edit/(:num)'] = 'home/updateKegiatan/$1';
 $route['home/logout'] = 'home/logout';
 // route calendar
 $route['api/calendar'] = 'calendar/kegiatan';
