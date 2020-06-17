@@ -59,6 +59,7 @@
         pembicara = calEvent.event.extendedProps.pembicara;
         pj = calEvent.event.extendedProps.pj;
         jenis = calEvent.event.extendedProps.jenis;
+        owner = calEvent.event.extendedProps.owner;
         catatan = calEvent.event.extendedProps.catatan;
         deskripsi = calEvent.event.extendedProps.deskripsi;
         review = (calEvent.event.extendedProps.review) ? calEvent.event.extendedProps.review : "-";
@@ -68,6 +69,7 @@
         $("#pembicara").text(pembicara);
         $("#pj").text(pj);
         $("#jenis").text(jenis);
+        $("#owner").text(owner);
         $("#catatan").text(catatan);
         $("#deskripsi").text(deskripsi);
         $("#review").text(review);
@@ -152,6 +154,7 @@
       <div class="modal-body">
         <h5 class="text-justify" id="nama">Title</h5>
         <ul class="list-group">
+            <li class="list-group-item">Pemilik acara: <span id="owner"></span></li>
             <li class="list-group-item">Lokasi: <span id="lokasi"></span></li>
             <li class="list-group-item">Pembicara: <span id="pembicara"></span></li>
             <li class="list-group-item">Waktu: <span id="waktu"></span></li>

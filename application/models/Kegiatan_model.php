@@ -9,6 +9,7 @@ class Kegiatan_model extends CI_Model{
     // define table
     private $_table = "kegiatan";
     private $_table_jenis = "jenis";
+    private $_table_user = "user";
     // definisi variabel yang sesuai dengan nama kolom di tabel user
     public $jenis_id;
     public $nama;
@@ -138,5 +139,9 @@ class Kegiatan_model extends CI_Model{
     // ambil semua data kegiatan
     public function kegiatanAll(){
         return $this->db->get($this->_table)->result();
+    }
+
+    public function getOwner($user){
+        return $this->db->get_where($this->_table_user, ["id" => $user])->row()->nama;
     }
 }

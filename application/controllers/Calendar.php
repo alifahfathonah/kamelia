@@ -23,6 +23,7 @@ class Calendar extends CI_Controller{
                 'deskripsi' => ucfirst($single->deskripsi),
                 'review' => ucfirst($single->review),
                 'jenis' => ucfirst($this->kegiatan_model->getJenis($single->jenis_id)),
+                'owner' => ucfirst($this->kegiatan_model->getOwner($single->user_id)),
                 // 'color' => '#800080'
             ];
             $data[] = $row;
