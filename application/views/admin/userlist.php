@@ -9,14 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <?php if ($this->session->flashdata('kegiatan_added')): ?>
+        <?php if ($this->session->flashdata('user_updated')): ?>
             <div class="alert alert-success" role="alert">
-                <?php echo $this->session->flashdata('kegiatan_added'); ?>
-            </div>
-        <?php endif; ?>
-        <?php if ($this->session->flashdata('kegiatan_updated')): ?>
-            <div class="alert alert-success" role="alert">
-                <?php echo $this->session->flashdata('kegiatan_updated'); ?>
+                <?php echo $this->session->flashdata('user_updated'); ?>
             </div>
         <?php endif; ?>
         <div class="row">

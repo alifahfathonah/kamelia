@@ -63,7 +63,7 @@ class User_model extends CI_Model
 
             ['field' => 'role',
                 'label'  => 'Role',
-                'rules'  => 'required'],
+                'rules'  => ''],
         ];
     }
     // fungsi untuk debugging

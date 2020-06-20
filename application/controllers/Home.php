@@ -106,6 +106,39 @@ class Home extends CI_Controller {
         $this->load->view("kegiatan/editkegiatan.php", $data);
     }
 
+    public function updateProfile()
+    {
+        // ambil id user yang sedang login
+        $id = $this->session->userdata('userid');
+        // membuat objek dari user_model di $user
+        $user = $this->user_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($user->rulesUpdate());
+
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run()) {
+            // update data menggunakan method atau fungsi dari model user
+            $user->update($id);
+            // tambahkan session user_updated kalo sudah berhasil menambahkan user
+            $this->session->set_flashdata('user_updated', 'Berhasil disunting');
+            // di redirect ke halaman admin user list
+            redirect(site_url('home'));
+        }
+
+        // ambil data user berdasarkan id
+        $data["user"] = $user->getById($id);
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"] = $this->session->userdata('role');
+
+        if (!$data["user"]) {
+            show_404();
+        }
+
+        $this->load->view("home/editprofile.php", $data);
+    }
+
     public function logout(){
 		// menghapus session
         $this->session->sess_destroy();

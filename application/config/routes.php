@@ -71,6 +71,7 @@ $route['home'] = 'home/index';
 $route['home/kegiatan'] = 'home/kegiatanList';
 $route['home/kegiatan/add'] = 'home/addKegiatan';
 $route['home/kegiatan/edit/(:num)'] = 'home/updateKegiatan/$1';
+$route['home/user/profile'] = 'Home/updateProfile';
 $route['home/logout'] = 'home/logout';
 // route calendar
 $route['api/calendar'] = 'calendar/kegiatan';

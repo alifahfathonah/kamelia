@@ -11,6 +11,11 @@
 
     <div class="container">
         <div class="row">
+        <?php if ($this->session->flashdata('user_updated')): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $this->session->flashdata('user_updated'); ?>
+            </div>
+        <?php endif; ?>
             <div class="col-12 text-center mt-2 mx-auto p-4">
                 <h1 class="h2">Hallo, <?php echo ucfirst($this->session->userdata('username')); ?></h1>
                 <p class="lead">Silakan</p>
@@ -21,6 +26,7 @@
                 <ul>
                     <li><a href="<?= site_url('home/kegiatan') ?>">Daftar kegiatan</a></li>
                     <li><a href="<?= site_url('home/kegiatan/add') ?>">Tambah kegiatan</a></li>
+                    <li><a href="<?= site_url('home/user/profile') ?>">Edit Profile</a></li>
                     <li><a href="<?= site_url('home/logout') ?>">Logout</a></li>
                 </ul>
             </div>

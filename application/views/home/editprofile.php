@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Admin</title>
+<title>Home</title>
 <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
 </head>
 <body>
@@ -35,13 +35,6 @@
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="email" class="form-control" name="email" placeholder="Masukkan email" value="<?=$user->email?>" />
-                    </div>
-                    <div class="form-group">
-                        <label for="role">Sebagai</label>
-                        <select name="role" id="" class="form-control">
-                        <option <?= $user->role == 1 ? 'selected' : '' ?> value="1">Admin</option>
-                        <option <?= $user->role == 2 ? 'selected' : '' ?> value="2">Sub Admin</option>
-                        </select>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-success w-100" value="Sunting" />
