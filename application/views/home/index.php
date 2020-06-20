@@ -25,68 +25,7 @@
             </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-8">
-            <table id="kegiatan" class="display" style="width:100%" border="1">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul</th>
-                        <th>Jenis</th>
-                        <th>Lokasi</th>
-                        <th>Penanggungjawab</th>
-                        <th>Waktu</th>
-                        <th>Status</th>
-                        <th>Review</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($kegiatan as $key => $keg):?>
-                    <tr>
-                        <td></td>
-                        <td><?php echo $keg->nama;?></td>
-                        <td><?php echo $this->kegiatan_model->getJenis($keg->jenis_id);?></td>
-                        <td><?php echo $keg->lokasi;?></td>
-                        <td><?php echo $keg->pj;?></td>
-                        <td><?php echo date("d-m-Y", strtotime($keg->waktu));;?></td>
-                        <td>
-                            <?php
-                                switch ($keg->status) {
-                                    case 1:
-                                        echo "Diajukan";
-                                        break;
-                                    case 2:
-                                        echo "Selesai";
-                                        break;
-                                    case 3:
-                                        echo "Gagal";
-                                        break;
-                                }
-                            ?>
-                        </td>
-                        <td>
-                                <a href="#<?php echo $keg->id;?>" class="btn btn-info">
-                                    Review
-                                </a>
-                        </td>
-                    </tr>
-                    <?php endforeach;?>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>No</th>
-                        <th>Judul</th>
-                        <th>Jenis</th>
-                        <th>Lokasi</th>
-                        <th>Penanggungjawab</th>
-                        <th>Waktu</th>
-                        <th>Status</th>
-                        <th>Review</th>
-                    </tr>
-                </tfoot>
-            </table>
-            </div>
-        </div>
+        
     </div>
     <script>
     $(document).ready(function() {

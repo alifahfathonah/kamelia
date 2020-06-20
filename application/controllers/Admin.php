@@ -32,7 +32,13 @@ class Admin extends CI_Controller{
     }
 
     public function user(){
-        echo 'hai user';
+        $data["role"] = $this->session->userdata('role');
+        // membuat objek dari user_model di $user 
+        $users = $this->user_model;
+        // ambil semua data user
+        $data['users'] = $users->getAll();
+
+        $this->load->view("admin/userlist.php", $data);
     }
 
     public function addUser(){

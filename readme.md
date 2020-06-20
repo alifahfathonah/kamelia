@@ -31,9 +31,12 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Datatable in subadmin
 * [x] Edit kegiatan
 * [x] List kegiatan
+* [ ] Admin edit admin profile
+* [ ] Admin edit user profile
+* [ ] user edit user profile
 * [ ] Subadmin add kegiatan
 * [x] Subadmin edit kegiatan
-* [ ] Add user list view in admin
+* [x] Add user list view in admin
 * [x] Add kegiatan list view in admin
 * [x] Add calendar
 * [ ] Admin and subadmin do review

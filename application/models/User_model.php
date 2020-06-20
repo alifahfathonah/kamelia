@@ -79,7 +79,7 @@ class User_model extends CI_Model
             if ($isPasswordTrue) {
                 // login sukses yay!
                 $sesdata = array(
-                    'userid'  => $user->id,
+                    'userid'    => $user->id,
                     'username'  => $user->username,
                     'nama'      => $user->nama,
                     'role'      => $user->role,
@@ -132,5 +132,10 @@ class User_model extends CI_Model
         $this->role     = $post["role"];
         // insert data ke table
         return $this->db->insert($this->_table, $this);
+    }
+
+    public function getAll()
+    {
+        return $this->db->get($this->_table)->result();
     }
 }

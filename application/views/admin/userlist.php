@@ -31,45 +31,31 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Username</th>
                         <th>Nama</th>
-                        <th>Lokasi</th>
-                        <th>Penanggungjawab</th>
-                        <th>Waktu</th>
-                        <th>Catatan</th>
+                        <th>Email</th>
                         <th>Status</th>
-                        <th>Review</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($kegiatan as $keg): ?>
+                    <?php foreach ($users as $user): ?>
                     <tr>
                         <td></td>
-                        <td><?=$keg->nama?></td>
-                        <td><?=$keg->lokasi?></td>
-                        <td><?=$keg->pj?></td>
-                        <td><?=date('d-m-Y', strtotime($keg->waktu))?></td>
-                        <td><?=$keg->catatan?></td>
-                        <td><?=$keg->status?></td>
-                        <td><?=($keg->review == null ? 'Belum ada' : '$keg->review')?></td>
-                        <td>
-                            <a href="<?= site_url($role == 1 ? 'admin' : 'home').'/kegiatan/edit/'.$keg->id ?>" 
-                            class="btn btn-success">Edit</a>
-                        </td>
+                        <td><?=$user->username?></td>
+                        <td><?=$user->nama?></td>
+                        <td><?=$user->email?></td>
+                        <!-- $this->kegiatan_model->getJenis($single->jenis_id) -->
+                        <td><?=($user->role == 1 ? 'Admin' : 'Sub Admin')?></td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>No</th>
+                        <th>Username</th>
                         <th>Nama</th>
-                        <th>Lokasi</th>
-                        <th>Penanggungjawab</th>
-                        <th>Waktu</th>
-                        <th>Catatan</th>
+                        <th>Email</th>
                         <th>Status</th>
-                        <th>Review</th>
-                        <th>Action</th>
                     </tr>
                 </tfoot>
             </table>
