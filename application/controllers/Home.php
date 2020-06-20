@@ -89,7 +89,7 @@ class Home extends CI_Controller {
         if ($this->form_validation->run())
         {
             // update data menggunakan method atau fungsi dari model kegiatan
-            $kegiatan->update();
+            $kegiatan->update($id);
             // tambahkan session kegiatan_updated kalo sudah berhasil menambahkan kegiatan
             $this->session->set_flashdata('kegiatan_updated', 'Berhasil disunting');
             // di redirect ke halaman admin kegiatan list
@@ -104,6 +104,32 @@ class Home extends CI_Controller {
         if (!$data["kegiatan"]) show_404();
         
         $this->load->view("kegiatan/editkegiatan.php", $data);
+    }
+
+    public function addReview($id)
+    {
+        // membuat objek dari kegiatan_model di $kegiatan
+        $kegiatan = $this->kegiatan_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($kegiatan->rulesReview());
+
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run()) {
+            // update data menggunakan method atau fungsi dari model kegiatan
+            $kegiatan->review($id);
+            // tambahkan session kegiatan_updated kalo sudah berhasil menambahkan kegiatan
+            $this->session->set_flashdata('review_added', 'Review ditambahkan');
+            // di redirect ke halaman admin kegiatan list
+            redirect(site_url('home/kegiatan'));
+        }
+        // ambil data kegiatan
+        $data["review"] = $kegiatan->getById($id);
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"] = $this->session->userdata('role');
+
+        $this->load->view("kegiatan/addreview.php", $data);
     }
 
     public function updateProfile()

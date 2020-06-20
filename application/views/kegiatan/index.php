@@ -6,6 +6,12 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<style>
+    .action{
+        display: inline-block;
+        /* padding: 20px; */
+    }
+</style>
 </head>
 <body>
     <div class="container">
@@ -19,6 +25,11 @@
                 <?php echo $this->session->flashdata('kegiatan_updated'); ?>
             </div>
         <?php endif; ?>
+        <?php if ($this->session->flashdata('review_added')): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $this->session->flashdata('review_added'); ?>
+            </div>
+        <?php endif; ?>
         <div class="row">
             <div class="col-12 text-center mt-2 mx-auto p-4">
                 <h1 class="h2">Daftar Kegiatan</h1>
@@ -26,7 +37,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-12">
             <table id="kegiatan" class="display" style="width:100%">
                 <thead>
                     <tr>
@@ -74,10 +85,14 @@
                         <?php if ($role == 1): ?>
                         <td><?= $kegiatanModel->getOwner($keg->user_id) ?></td>
                         <?php endif; ?>
-                        <td><?=($keg->review == null ? 'Belum ada' : '$keg->review')?></td>
-                        <td>
+                        <td><?=($keg->review == null ? 'Belum ada' : $keg->review)?></td>
+                        <td style='white-space: nowrap'>
                             <a href="<?= site_url($role == 1 ? 'admin' : 'home').'/kegiatan/edit/'.$keg->id ?>" 
                             class="btn btn-success">Edit</a>
+                            <?php if($keg->status == 1): ?>
+                                <a href="<?= site_url($role == 1 ? 'admin' : 'home').'/kegiatan/review/'.$keg->id ?>" 
+                            class="btn btn-success">Review</a>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <?php endforeach;?>

@@ -65,12 +65,14 @@ $route['admin/user/edit/(:num)'] = 'admin/updateUser/$1';
 $route['admin/kegiatan'] = 'admin/kegiatanList';
 $route['admin/kegiatan/add'] = 'admin/addKegiatan';
 $route['admin/kegiatan/edit/(:num)'] = 'admin/updateKegiatan/$1';
+$route['admin/kegiatan/review/(:num)'] = 'admin/addReview/$1';
 $route['admin/jenis/add'] = 'admin/addJenis';
 // route subadmin
 $route['home'] = 'home/index';
 $route['home/kegiatan'] = 'home/kegiatanList';
 $route['home/kegiatan/add'] = 'home/addKegiatan';
 $route['home/kegiatan/edit/(:num)'] = 'home/updateKegiatan/$1';
+$route['home/kegiatan/review/(:num)'] = 'home/addReview/$1';
 $route['home/user/profile'] = 'Home/updateProfile';
 $route['home/logout'] = 'home/logout';
 // route calendar

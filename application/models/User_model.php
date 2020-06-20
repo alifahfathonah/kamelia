@@ -66,17 +66,6 @@ class User_model extends CI_Model
                 'rules'  => ''],
         ];
     }
-    // fungsi untuk debugging
-    public function dump($var, $die = false)
-    {
-        echo '<pre>';
-        var_dump($var);
-        echo '</pre>';
-        if ($die) {
-            die;
-        }
-
-    }
 
     // buat methd untuk login
     public function doLogin()
@@ -165,11 +154,12 @@ class User_model extends CI_Model
         // ambil input yang metodenya post
         $post = $this->input->post();
         if (!empty($post['password'])) {
+            // proses hashing password
             $password = password_hash($post["password"], PASSWORD_DEFAULT);
-            // $this->db->update($this->_table, , array('id' => $id));
-            $data = array('password' => $password);    
+            // proses update password saja
+            $data = array('password' => $password);
             $this->db->where('id', $id);
-            $this->db->update($this->_table, $data); 
+            $this->db->update($this->_table, $data);
         }
         // diinisiasi di variabel yang sudah ditulis di atas
         $this->nama     = $post["nama"];

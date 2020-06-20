@@ -33,13 +33,13 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] List kegiatan
 * [x] Admin edit admin profile
 * [x] Admin edit user profile
-* [ ] user edit user profile
+* [x] User edit user profile
 * [x] Subadmin add kegiatan
 * [x] Subadmin edit kegiatan
 * [x] Add user list view in admin
 * [x] Add kegiatan list view in admin
 * [x] Add calendar
-* [ ] Admin and subadmin do review and change status
+* [x] Admin and subadmin do review and change status
 * [x] Subadmin show owned kegiatan
 * [ ] Front end in calendar
 
