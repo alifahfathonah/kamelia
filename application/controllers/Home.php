@@ -38,7 +38,33 @@ class Home extends CI_Controller {
     }
 
     public function addKegiatan(){
+        // membuat objek dari kegiatan_model di $kegiatan
+        $kegiatan = $this->kegiatan_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($kegiatan->rules());
 
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run())
+        {
+            // save data menggunakan method atau fungsi dari model kegiatan
+            $kegiatan->save();
+            // tambahkan session kegiatan_added kalo sudah berhasil menambahkan kegiatan
+            $this->session->set_flashdata('kegiatan_added', 'Berhasil ditambahkan');
+            // di redirect ke halaman home kegiatan list
+            redirect(site_url('home/kegiatan'));
+        }
+        // load fungsi untuk pake 'date'
+        $this->load->helper('date');
+        // inisiasi data yang bakal dikirim ke view
+        $data["date"] = mdate("%Y-%m-%d %h:%i %A");
+        // jenis ini kan dari table yang lain, perlu diambil dulu datanya untuk ditampilkan jadi bentuk select option
+        $data["jenis"] = $kegiatan->jenis();
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"] = $this->session->userdata('role');
+        // jika pertama kali buka akan menampilkan halaman addkegiatan.php dan mengirim data yang akan digunakan di view
+        $this->load->view("kegiatan/addkegiatan.php", $data);
     }
 
     public function updateKegiatan($id){

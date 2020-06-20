@@ -12,7 +12,8 @@ class User_model extends CI_Model
     // definisi variabel yang sesuai dengan nama kolom di tabel user
     public $nama;
     public $username;
-    public $password;
+    // public $password;
+    public $email;
     public $role = "2";
 
     // aturan untuk validasi input
@@ -25,7 +26,7 @@ class User_model extends CI_Model
 
             ['field' => 'username',
                 'label'  => 'Username',
-                'rules'  => 'required|is_unique[user.email]'],
+                'rules'  => 'required|is_unique[user.username]'],
 
             ['field' => 'password',
                 'label'  => 'Password',
@@ -34,6 +35,31 @@ class User_model extends CI_Model
             ['field' => 'email',
                 'label'  => 'Email',
                 'rules'  => 'required|valid_email|is_unique[user.email]'],
+
+            ['field' => 'role',
+                'label'  => 'Role',
+                'rules'  => 'required'],
+        ];
+    }
+
+    public function rulesUpdate()
+    {
+        return [
+            ['field' => 'nama',
+                'label'  => 'Nama',
+                'rules'  => 'required'],
+
+            ['field' => 'username',
+                'label'  => 'Username',
+                'rules'  => 'required'],
+
+            ['field' => 'password',
+                'label'  => 'Password',
+                'rules'  => ''],
+
+            ['field' => 'email',
+                'label'  => 'Email',
+                'rules'  => 'required|valid_email'],
 
             ['field' => 'role',
                 'label'  => 'Role',
@@ -134,8 +160,33 @@ class User_model extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
+    public function update($id)
+    {
+        // ambil input yang metodenya post
+        $post = $this->input->post();
+        if (!empty($post['password'])) {
+            $password = password_hash($post["password"], PASSWORD_DEFAULT);
+            // $this->db->update($this->_table, , array('id' => $id));
+            $data = array('password' => $password);    
+            $this->db->where('id', $id);
+            $this->db->update($this->_table, $data); 
+        }
+        // diinisiasi di variabel yang sudah ditulis di atas
+        $this->nama     = $post["nama"];
+        $this->username = $post["username"];
+        $this->email    = $post["email"];
+        $this->role     = $post["role"];
+        return $this->db->update($this->_table, $this, array('id' => $id));
+    }
+
     public function getAll()
     {
         return $this->db->get($this->_table)->result();
+    }
+
+    // ambil data kegiatan dengan id
+    public function getById($id)
+    {
+        return $this->db->get_where($this->_table, ["id" => $id])->row();
     }
 }

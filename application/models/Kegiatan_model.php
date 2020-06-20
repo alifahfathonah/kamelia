@@ -12,6 +12,7 @@ class Kegiatan_model extends CI_Model{
     private $_table_user = "user";
     // definisi variabel yang sesuai dengan nama kolom di tabel user
     public $jenis_id;
+    public $user_id;
     public $nama;
     public $deskripsi;
     public $lokasi;
@@ -100,6 +101,7 @@ class Kegiatan_model extends CI_Model{
         $post = $this->input->post();
         // diinisiasi di variabel yang sudah ditulis di atas
         $this->jenis_id = $post["jenis_id"];
+        $this->user_id = $this->session->userdata('userid');
         $this->nama = $post["nama"];
         $this->deskripsi = $post["deskripsi"];
         $this->lokasi = $post["lokasi"];
@@ -114,11 +116,12 @@ class Kegiatan_model extends CI_Model{
         return $this->db->insert($this->_table, $this);
     }
 
-    public function update(){
+    public function update($id){
         // ambil input yang metodenya post
         $post = $this->input->post();
         // diinisiasi di variabel yang sudah ditulis di atas
         $this->jenis_id = $post["jenis_id"];
+        $this->user_id = $this->db->get_where($this->_table, ["id" => $id])->row()->user_id;
         $this->nama = $post["nama"];
         $this->deskripsi = $post["deskripsi"];
         $this->lokasi = $post["lokasi"];
@@ -129,7 +132,7 @@ class Kegiatan_model extends CI_Model{
         // Status 1 karena belum terlaksana. 1 = diajukan, 2 = selesai, 3 = gagal
         $this->status = 1;
         $this->review = null;
-        return $this->db->update($this->_table, $this, array('id' => $post['id']));
+        return $this->db->update($this->_table, $this, array('id' => $id));
     }
 
     // ambil data kegiatan dengan id

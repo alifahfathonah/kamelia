@@ -35,6 +35,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,10 @@
                         <td><?=$user->email?></td>
                         <!-- $this->kegiatan_model->getJenis($single->jenis_id) -->
                         <td><?=($user->role == 1 ? 'Admin' : 'Sub Admin')?></td>
+                        <td>
+                            <a href="<?= site_url('/admin/user/edit/'.$user->id) ?>" 
+                            class="btn btn-success">Edit</a>
+                        </td>
                     </tr>
                     <?php endforeach;?>
                 </tbody>

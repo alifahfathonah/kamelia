@@ -37,6 +37,9 @@
                         <th>Waktu</th>
                         <th>Catatan</th>
                         <th>Status</th>
+                        <?php if ($role == 1): ?>
+                        <th>Pemilik acara</th>
+                        <?php endif; ?>
                         <th>Review</th>
                         <th>Action</th>
                     </tr>
@@ -50,7 +53,27 @@
                         <td><?=$keg->pj?></td>
                         <td><?=date('d-m-Y', strtotime($keg->waktu))?></td>
                         <td><?=$keg->catatan?></td>
-                        <td><?=$keg->status?></td>
+                        <td>
+                            <?php switch ($keg->status) {
+                                case '1':
+                                    echo "Diajukan";
+                                    break;
+                                case '2':
+                                    echo "Selesai";
+                                    break;
+                                
+                                case '3':
+                                    echo "Gagal";
+                                    break;
+                                
+                                default:
+                                    echo "Error";
+                                    break;
+                            } ?>
+                        </td>
+                        <?php if ($role == 1): ?>
+                        <td><?= $kegiatanModel->getOwner($keg->user_id) ?></td>
+                        <?php endif; ?>
                         <td><?=($keg->review == null ? 'Belum ada' : '$keg->review')?></td>
                         <td>
                             <a href="<?= site_url($role == 1 ? 'admin' : 'home').'/kegiatan/edit/'.$keg->id ?>" 
@@ -68,6 +91,9 @@
                         <th>Waktu</th>
                         <th>Catatan</th>
                         <th>Status</th>
+                        <?php if ($role == 1): ?>
+                        <th>Pemilik acara</th>
+                        <?php endif; ?>
                         <th>Review</th>
                         <th>Action</th>
                     </tr>

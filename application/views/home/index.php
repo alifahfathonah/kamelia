@@ -19,8 +19,9 @@
         <div class="row">
             <div class="col-8">
                 <ul>
-                    <li><a href="#">Tambah Kegiatan</a></li>
-                    <li><a href="<?=site_url('home/logout')?>">Logout</a></li>
+                    <li><a href="<?= site_url('home/kegiatan') ?>">Daftar kegiatan</a></li>
+                    <li><a href="<?= site_url('home/kegiatan/add') ?>">Tambah kegiatan</a></li>
+                    <li><a href="<?= site_url('home/logout') ?>">Logout</a></li>
                 </ul>
             </div>
             </div>

@@ -1,8 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller{
-    public function __construct(){
+class Admin extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         // load model
         $this->load->model("user_model");
@@ -14,26 +16,29 @@ class Admin extends CI_Controller{
             redirect(site_url('login'));
         }
         // cek role
-        if ($this->session->userdata('role') == '2'){
+        if ($this->session->userdata('role') == '2') {
             // kalo role 2(home) redirect ke /home
             redirect(site_url('home'));
         }
     }
 
-    public function index(){
+    public function index()
+    {
         // menampilkan halaman index admin
         $this->load->view("admin/index.php");
     }
 
-    public function logout(){
-		// menghapus session
+    public function logout()
+    {
+        // menghapus session
         $this->session->sess_destroy();
         redirect(site_url('/'));
     }
 
-    public function user(){
+    public function user()
+    {
         $data["role"] = $this->session->userdata('role');
-        // membuat objek dari user_model di $user 
+        // membuat objek dari user_model di $user
         $users = $this->user_model;
         // ambil semua data user
         $data['users'] = $users->getAll();
@@ -41,8 +46,9 @@ class Admin extends CI_Controller{
         $this->load->view("admin/userlist.php", $data);
     }
 
-    public function addUser(){
-        // membuat objek dari user_model di $user 
+    public function addUser()
+    {
+        // membuat objek dari user_model di $user
         $user = $this->user_model;
         // menginisiasi validation
         $validation = $this->form_validation;
@@ -50,8 +56,7 @@ class Admin extends CI_Controller{
         $validation->set_rules($user->rules());
 
         // cek jika berhasil input atau sudah di post
-        if ($this->form_validation->run())
-        {
+        if ($this->form_validation->run()) {
             // save data menggunakan method atau fungsi dari model user
             $user->save();
             // tambahkan session user_added kalo sudah berhasil menambahkan user
@@ -63,15 +68,54 @@ class Admin extends CI_Controller{
         $this->load->view("admin/adduser.php");
     }
 
-    public function kegiatanList(){
-        $kegiatan = $this->kegiatan_model;
-        $data["kegiatan"] = $kegiatan->kegiatanAll();
+    public function updateUser($id)
+    {
+        // jika $id tidak diisi akan di redirect ke halaman daftar user
+        if (!isset($id)) {
+            redirect('admin/user');
+        }
+
+        // membuat objek dari user_model di $user
+        $user = $this->user_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($user->rulesUpdate());
+
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run()) {
+            // update data menggunakan method atau fungsi dari model user
+            $user->update($id);
+            // tambahkan session user_updated kalo sudah berhasil menambahkan user
+            $this->session->set_flashdata('user_updated', 'Berhasil disunting');
+            // di redirect ke halaman admin user list
+            redirect(site_url('admin/user'));
+        }
+
+        // ambil data user berdasarkan id
+        $data["user"] = $user->getById($id);
         // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
         $data["role"] = $this->session->userdata('role');
+
+        if (!$data["user"]) {
+            show_404();
+        }
+
+        $this->load->view("admin/edituser.php", $data);
+    }
+
+    public function kegiatanList()
+    {
+        $kegiatan         = $this->kegiatan_model;
+        $data["kegiatan"] = $kegiatan->kegiatanAll();
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"]          = $this->session->userdata('role');
+        $data["kegiatanModel"] = $kegiatan;
         $this->load->view("kegiatan/index.php", $data);
     }
 
-    public function addKegiatan(){
+    public function addKegiatan()
+    {
         // membuat objek dari kegiatan_model di $kegiatan
         $kegiatan = $this->kegiatan_model;
         // menginisiasi validation
@@ -80,8 +124,7 @@ class Admin extends CI_Controller{
         $validation->set_rules($kegiatan->rules());
 
         // cek jika berhasil input atau sudah di post
-        if ($this->form_validation->run())
-        {
+        if ($this->form_validation->run()) {
             // save data menggunakan method atau fungsi dari model kegiatan
             $kegiatan->save();
             // tambahkan session kegiatan_added kalo sudah berhasil menambahkan kegiatan
@@ -101,10 +144,13 @@ class Admin extends CI_Controller{
         $this->load->view("kegiatan/addkegiatan.php", $data);
     }
 
-    public function updateKegiatan($id){
+    public function updateKegiatan($id)
+    {
         // jika $id tidak diisi akan di redirect ke halaman daftar kegiatan
-        if (!isset($id)) redirect('admin/kegiatan');
-        
+        if (!isset($id)) {
+            redirect('admin/kegiatan');
+        }
+
         // membuat objek dari kegiatan_model di $kegiatan
         $kegiatan = $this->kegiatan_model;
         // menginisiasi validation
@@ -113,10 +159,9 @@ class Admin extends CI_Controller{
         $validation->set_rules($kegiatan->rules());
 
         // cek jika berhasil input atau sudah di post
-        if ($this->form_validation->run())
-        {
+        if ($this->form_validation->run()) {
             // update data menggunakan method atau fungsi dari model kegiatan
-            $kegiatan->update();
+            $kegiatan->update($id);
             // tambahkan session kegiatan_updated kalo sudah berhasil menambahkan kegiatan
             $this->session->set_flashdata('kegiatan_updated', 'Berhasil disunting');
             // di redirect ke halaman admin kegiatan list
@@ -130,12 +175,15 @@ class Admin extends CI_Controller{
         // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
         $data["role"] = $this->session->userdata('role');
 
-        if (!$data["kegiatan"]) show_404();
-        
+        if (!$data["kegiatan"]) {
+            show_404();
+        }
+
         $this->load->view("kegiatan/editkegiatan.php", $data);
     }
 
-    public function addJenis(){
+    public function addJenis()
+    {
         // membuat objek dari kegiatan_model di $kegiatan
         $kegiatan = $this->kegiatan_model;
         // menginisiasi validation
@@ -144,8 +192,7 @@ class Admin extends CI_Controller{
         $validation->set_rules($kegiatan->rulesJenis());
 
         // cek jika berhasil input atau sudah di post
-        if ($this->form_validation->run())
-        {
+        if ($this->form_validation->run()) {
             // save data menggunakan method atau fungsi dari model kegiatan
             $kegiatan->saveJenis();
             // tambahkan session kegiatan_added kalo sudah berhasil menambahkan kegiatan

@@ -31,16 +31,17 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Datatable in subadmin
 * [x] Edit kegiatan
 * [x] List kegiatan
-* [ ] Admin edit admin profile
-* [ ] Admin edit user profile
+* [x] Admin edit admin profile
+* [x] Admin edit user profile
 * [ ] user edit user profile
-* [ ] Subadmin add kegiatan
+* [x] Subadmin add kegiatan
 * [x] Subadmin edit kegiatan
 * [x] Add user list view in admin
 * [x] Add kegiatan list view in admin
 * [x] Add calendar
-* [ ] Admin and subadmin do review
+* [ ] Admin and subadmin do review and change status
 * [x] Subadmin show owned kegiatan
+* [ ] Front end in calendar
 
 ## Issue
 * NAMA JENIS DI INDEX KEGIATAN BELUM TAMPIL DAN SEARCH DATATABLES BELUM JALAN

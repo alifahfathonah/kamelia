@@ -24,7 +24,6 @@
                 </div>
             <?php endif; ?>
                 <?php echo form_open(); ?>
-                <input type="hidden" name="id" value="<?= $kegiatan->id?>" />
                     <div class="form-group">
                         <label for="nama">Nama Kegiatan</label>
                         <input type="text" class="form-control" name="nama" placeholder="Masukkan nama kegiatan" value="<?= $kegiatan->nama ?>" required />
