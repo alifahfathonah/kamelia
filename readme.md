@@ -41,7 +41,7 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Add calendar
 * [x] Admin and subadmin do review and change status
 * [x] Subadmin show owned kegiatan
-* [ ] Front end in calendar
+* [x] Front end in calendar
 
 ## Issue
 * NAMA JENIS DI INDEX KEGIATAN BELUM TAMPIL DAN SEARCH DATATABLES BELUM JALAN
