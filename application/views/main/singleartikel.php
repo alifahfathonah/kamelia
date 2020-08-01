@@ -76,6 +76,8 @@
       <div class="row pt-5">
         <div class="col-md-12">
             <h3><?= $artikel->judul ?></h3>
+            <span><strong>Ditulis: <?= date("d/m/Y", strtotime($artikel->dibuat)); ?></strong></span>
+            <br>
             <img src="<?= site_url('/uploads/images/thumbnails/').$artikel->thumbnail ?>" width="300" height="300" class="d-inline-block align-top" alt="">
             <p>
                 <?= $artikel->isi ?>

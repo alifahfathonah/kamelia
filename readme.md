@@ -44,8 +44,9 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Front end in calendar
 * [x] Admin CRUD artikel
 * [x] Artikel list and single
-* [ ] Pagination
+* [x] Pagination
 
 ## Issue
+``` $config['use_page_numbers'] ``` not work properly
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)

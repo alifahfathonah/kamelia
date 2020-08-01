@@ -57,12 +57,12 @@ class Artikel_model extends CI_Model
 
     public function all()
     {
-        return $this->db->order_by('dibuat', 'asc')->get($this->_table)->result();
+        return $this->db->order_by('dibuat', 'desc')->get($this->_table)->result();
     }
 
-    public function allMain()
+    public function allPagination($limit, $start)
     {
-        return $this->db->order_by('dibuat', 'asc')->get($this->_table)->result();
+        return $this->db->order_by('dibuat', 'desc')->get($this->_table, $limit, $start)->result();
     }
 
     // ambil data kegiatan dengan id
