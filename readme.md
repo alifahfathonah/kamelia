@@ -42,9 +42,10 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Admin and subadmin do review and change status
 * [x] Subadmin show owned kegiatan
 * [x] Front end in calendar
+* [x] Admin CRUD artikel
+* [x] Artikel list and single
+* [ ] Pagination
 
 ## Issue
-* NAMA JENIS DI INDEX KEGIATAN BELUM TAMPIL DAN SEARCH DATATABLES BELUM JALAN
-* ORDER DI LIST KEGIATAN MENYESUAIKAN DATATABLES
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)

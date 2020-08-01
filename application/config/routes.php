@@ -52,6 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+// main
+$route['/'] = 'main/index';
+$route['calendar'] = 'main/calendar';
+$route['artikel'] = 'main/artikel';
+$route['artikel/(:any)'] = 'main/artikelSingle/$1';
 // route auth
 $route['auth'] = 'auth/index';
 $route['login'] = 'auth/login';
@@ -67,6 +72,11 @@ $route['admin/kegiatan/add'] = 'admin/addKegiatan';
 $route['admin/kegiatan/edit/(:num)'] = 'admin/updateKegiatan/$1';
 $route['admin/kegiatan/review/(:num)'] = 'admin/addReview/$1';
 $route['admin/jenis/add'] = 'admin/addJenis';
+// route admin artikel
+$route['admin/artikel'] = 'admin/artikelList';
+$route['admin/artikel/add'] = 'admin/addArtikel';
+$route['admin/artikel/edit/(:num)'] = 'admin/updateArtikel/$1';
+$route['admin/artikel/delete/(:num)'] = 'admin/deleteArtikel/$1';
 // route subadmin
 $route['home'] = 'home/index';
 $route['home/kegiatan'] = 'home/kegiatanList';

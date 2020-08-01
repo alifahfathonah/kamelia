@@ -29,6 +29,8 @@
                     <li><a href="<?= site_url('admin/kegiatan') ?>">Daftar kegiatan</a></li>
                     <li><a href="<?= site_url('admin/kegiatan/add') ?>">Tambah kegiatan</a></li>
                     <li><a href="<?= site_url('admin/jenis/add') ?>">Tambah jenis</a></li>
+                    <li><a href="<?= site_url('admin/artikel/add') ?>">Tambah artikel</a></li>
+                    <li><a href="<?= site_url('admin/artikel') ?>">Daftar artikel</a></li>
                     <li><a href="<?= site_url('admin/logout') ?>">Logout</a></li>
                 </ul>
             </div>

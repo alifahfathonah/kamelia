@@ -213,10 +213,7 @@ main{
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="{{ url('/login') }}">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ url('/register') }}">Register</a>
+            <a class="nav-link" href="<?= site_url('login') ?>">Login</a>
         </li>
     </ul>
   </div>
@@ -280,20 +277,19 @@ main{
 </main>
 
 <footer class="footer d-flex mt-auto">
-      <div class="container" style="padding: 50px;">
-        <div class="row">
-          <div class="col-lg-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae quo, suscipit officia ducimus neque, rerum soluta facilis temporibus ipsam aspernatur delectus quis. A omnis culpa quae quas repudiandae facilis nam.</p>
-          </div>
-          <div class="col-lg-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio aperiam, repudiandae doloremque laboriosam similique laudantium corporis quaerat debitis impedit quas minus reprehenderit, quis eligendi dolore id doloribus odit ratione minima.</p>
-          </div>
-          <div class="col-lg-4">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ipsam quam aspernatur nulla et fugit sint perferendis ea, tenetur, est qui facilis officia, nemo soluta ipsa impedit, nesciunt fuga! Nemo!</p>
-          </div>
-        </div>
+  <div class="container" style="padding: 50px;">
+    <div class="row">
+      <div class="col-lg-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae quo, suscipit officia ducimus neque, rerum soluta facilis temporibus ipsam aspernatur delectus quis. A omnis culpa quae quas repudiandae facilis nam.</p>
       </div>
-      
-    </footer>
+      <div class="col-lg-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio aperiam, repudiandae doloremque laboriosam similique laudantium corporis quaerat debitis impedit quas minus reprehenderit, quis eligendi dolore id doloribus odit ratione minima.</p>
+      </div>
+      <div class="col-lg-4">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci ipsam quam aspernatur nulla et fugit sint perferendis ea, tenetur, est qui facilis officia, nemo soluta ipsa impedit, nesciunt fuga! Nemo!</p>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

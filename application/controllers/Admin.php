@@ -9,6 +9,7 @@ class Admin extends CI_Controller
         // load model
         $this->load->model("user_model");
         $this->load->model("kegiatan_model");
+        $this->load->model("artikel_model");
         $this->load->library('form_validation');
         // cek, udah login belum
         if ($this->user_model->isNotLogin()) {
@@ -228,5 +229,86 @@ class Admin extends CI_Controller
         }
         // jika pertama kali buka akan menampilkan halaman addkegiatan.php dan mengirim data yang akan digunakan di view
         $this->load->view("admin/addjenis.php");
+    }
+
+    // Artikel thing
+    public function artikelList()
+    {
+        // membuat objek dari artikel_model di $artikel
+        $artikel = $this->artikel_model;
+        // load view dan menampilkan data
+        $data["artikel"] = $artikel->all();
+        $data["role"]    = $this->session->userdata('role');
+        $this->load->view("artikel/index.php", $data);
+
+    }
+    public function addArtikel()
+    {
+        // membuat objek dari artikel_model di $artikel
+        $artikel = $this->artikel_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($artikel->rules());
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run()) {
+            // save data menggunakan method atau fungsi dari model artikel
+            $artikel->save();
+            // tambahkan session artikel_added kalo sudah berhasil menambahkan artikel
+            $this->session->set_flashdata('artikel_added', 'Berhasil ditambahkan');
+            // di redirect ke halaman list artikel admin
+            redirect(site_url('admin/artikel'));
+        }
+        // jika pertama kali buka akan menampilkan halaman addkegiatan.php dan mengirim data yang akan digunakan di view
+        $this->load->view("artikel/add.php");
+    }
+
+    public function updateArtikel($id)
+    {
+        // jika $id tidak diisi akan di redirect ke halaman daftar artikel
+        if (!isset($id)) {
+            redirect('admin/artikel');
+        }
+
+        // membuat objek dari artikel_model di $artikel
+        $artikel = $this->artikel_model;
+        // menginisiasi validation
+        $validation = $this->form_validation;
+        // validasi data
+        $validation->set_rules($artikel->rules());
+
+        // cek jika berhasil input atau sudah di post
+        if ($this->form_validation->run()) {
+            // update data menggunakan method atau fungsi dari model artikel
+            $artikel->update($id);
+            // tambahkan session artikel_updated kalo sudah berhasil menambahkan artikel
+            $this->session->set_flashdata('artikel_updated', 'Berhasil disunting');
+            // di redirect ke halaman admin artikel list
+            redirect(site_url('admin/artikel'));
+        }
+
+        // ambil data artikel berdasarkan id
+        $data["artikel"] = $artikel->getById($id);
+        // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
+        $data["role"] = $this->session->userdata('role');
+
+        if (!$data["artikel"]) {
+            show_404();
+        }
+
+        $this->load->view("artikel/edit.php", $data);
+    }
+
+    public function deleteArtikel($id)
+    {
+        // membuat objek dari artikel_model di $artikel
+        $artikel = $this->artikel_model;
+        // menghapus data
+        $artikel->delete($id);
+
+        // tambahkan session artikel_updated kalo sudah berhasil menambahkan artikel
+        $this->session->set_flashdata('artikel_deleted', 'Berhasil dihapus');
+        // di redirect ke halaman admin artikel list
+        redirect(site_url('admin/artikel'));
     }
 }
