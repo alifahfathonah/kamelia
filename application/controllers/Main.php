@@ -33,11 +33,12 @@ class Main extends CI_Controller
         $page = (isset($_GET['page'])) ? $_GET['page'] : 0;
         $this->pagination->initialize($this->configPagination($per_page));
 
-        // $start = $page * $per_page;
-        // print_r($start); die();
+        // ambil data dari 0
+        $start = (($page -1 < 0 ? $page=0 : $page - 1)) * $per_page;
 
+        // variable pagination dan data artikel
         $data['pagination'] = $this->pagination->create_links();
-        $data['artikel']    = $artikel->allPagination($per_page, $page);
+        $data['artikel']    = $artikel->allPagination($per_page, $start);
 
         $this->load->view("main/artikel.php", $data);
     }
@@ -50,7 +51,7 @@ class Main extends CI_Controller
         $choice                         = $config["total_rows"] / $config["per_page"];
         $config["num_links"]            = floor($choice);
         $config['page_query_string']    = true;
-        // $config['use_page_numbers']     = true;
+        $config['use_page_numbers']     = true;
         $config['query_string_segment'] = 'page';
         // $config["uri_segment"]          = 2; // uri parameter
 
