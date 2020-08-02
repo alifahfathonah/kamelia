@@ -60,6 +60,11 @@
       </li>
     </ul>
     <ul class="navbar-nav">
+        <form class="form-inline" action="<?= site_url('artikel') ?>" method="POST">
+          <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search">
+          <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+          <input type="submit" class="btn btn-outline-success my-2 my-sm-0" name="submit_search" value="Search">
+        </form>
         <li class="nav-item">
             <a class="nav-link" href="<?= site_url('login') ?>">Login</a>
         </li>

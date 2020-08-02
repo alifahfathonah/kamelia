@@ -27,26 +27,38 @@ class Main extends CI_Controller
     {
         $artikel = $this->artikel_model;
 
-        //konfigurasi pagination
+        // untuk mencari berdasarkan judul dan isi
+        $search = '';
+        if ($this->input->post('submit_search') != null) {
+            $search = $this->input->post('search');
+            $this->session->set_userdata(array("search" => $search));
+        } else {
+            if ($this->session->userdata('search') != null) {
+                $search = $this->session->userdata('search');
+            }
+        }
+        // Menghitung data yang diambil berdasarkan pencarian
+        $allcount = $artikel->getRecordCount($search);
+        
+        // konfigurasi pagination
         $this->load->library('pagination');
         $per_page = 6;
-        $page = (isset($_GET['page'])) ? $_GET['page'] : 0;
-        $this->pagination->initialize($this->configPagination($per_page));
-
+        $page     = (isset($_GET['page'])) ? $_GET['page'] : 0;
+        $this->pagination->initialize($this->configPagination($per_page, $allcount));
         // ambil data dari 0
-        $start = (($page -1 < 0 ? $page=0 : $page - 1)) * $per_page;
+        $start = (($page - 1 < 0 ? $page = 0 : $page - 1)) * $per_page;
 
         // variable pagination dan data artikel
         $data['pagination'] = $this->pagination->create_links();
-        $data['artikel']    = $artikel->allPagination($per_page, $start);
+        $data['artikel'] = $artikel->allPaginationSearch($per_page, $start, $search);;
 
         $this->load->view("main/artikel.php", $data);
     }
 
-    private function configPagination($per_page)
+    private function configPagination($per_page, $total_rows)
     {
         $config['base_url']             = site_url('/artikel');
-        $config['total_rows']           = count($this->artikel_model->all()); //total row
+        $config['total_rows']           = $total_rows; //total row
         $config['per_page']             = $per_page; //show record per halaman
         $choice                         = $config["total_rows"] / $config["per_page"];
         $config["num_links"]            = floor($choice);

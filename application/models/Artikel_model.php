@@ -36,15 +36,15 @@ class Artikel_model extends CI_Model
         $post = $this->input->post();
         // membuat slug, ex: judul-berita dan menyaring judul dengan spasi, angka, dan huruf
         $filter = preg_replace('/[^\da-z ]/i', '', $post["judul"]);
-        $slug = str_replace(" ", "-", strtolower($filter));
+        $slug   = str_replace(" ", "-", strtolower($filter));
         // cek kalau slug sudah ada ditambahkan waktu
         if ($this->db->get_where($this->_table, ["slug" => $slug])->row() != null) {
             $slug = $slug . '-' . time();
         }
 
         // menambahkan id user yang sedang login dan menambahkan slug
-        $post["user_id"]   = $this->session->userdata("userid");
-        $post["slug"]      = $slug;
+        $post["user_id"] = $this->session->userdata("userid");
+        $post["slug"]    = $slug;
         // kalo gambar kosong bakal dibuat default
         if (!empty($_FILES["thumbnail"]["name"])) {
             $post["thumbnail"] = $this->_uploadImage();
@@ -60,9 +60,37 @@ class Artikel_model extends CI_Model
         return $this->db->order_by('dibuat', 'desc')->get($this->_table)->result();
     }
 
-    public function allPagination($limit, $start)
+    public function allPaginationSearch($limit, $start, $search = "")
     {
-        return $this->db->order_by('dibuat', 'desc')->get($this->_table, $limit, $start)->result();
+        $this->db->select('*');
+        $this->db->from('artikel');
+
+        if ($search != '') {
+            $this->db->like('judul', $search);
+            $this->db->or_like('isi', $search);
+        }
+
+        $this->db->limit($limit, $start)->order_by('dibuat', 'desc');
+        $query = $this->db->get();
+
+        return $query->result();
+    }
+
+    public function getRecordCount($search = '')
+    {
+
+        $this->db->select('count(*) as allcount');
+        $this->db->from('artikel');
+
+        if ($search != '') {
+            $this->db->like('judul', $search);
+            $this->db->or_like('isi', $search);
+        }
+
+        $query  = $this->db->get();
+        $result = $query->result_array();
+
+        return $result[0]['allcount'];
     }
 
     // ambil data kegiatan dengan id
@@ -101,7 +129,7 @@ class Artikel_model extends CI_Model
         $delete = $this->db->get_where($this->_table, ["id" => $id])->row();
         // hapus yang gambarnya tidak default
         if ($delete->thumbnail !== 'default.jpg') {
-            delete_files('./uploads/images/thumbnails/'.$delete->thumbnail);
+            delete_files('./uploads/images/thumbnails/' . $delete->thumbnail);
         }
         // hapus data
         return $this->db->delete($this->_table, array('id' => $id));
