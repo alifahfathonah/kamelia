@@ -44,6 +44,15 @@
                         <textarea id="isi" class="form-control" name="isi"></textarea>
                     </div>
                     <div class="form-group">
+                        <label for="">Kategori Tulisan</label>
+                        <select class="form-control" name="kategori_id">
+                            <option value="" selected hidden disabled>Pilih Kategori</option>
+                            <?php foreach ($kategori as $kat): ?>
+                            <option value="<?php echo $kat->id; ?>"><?php echo ucfirst($kat->nama);?> </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" class="btn btn-success w-100" value="Tambah" />
                     </div>
                 </form>

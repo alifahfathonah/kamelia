@@ -46,9 +46,10 @@ $config['base_url'] = 'http://kamelia.id';
 * [x] Artikel list and single
 * [x] Artikel pagination
 * [x] Artikel search
+* [x] Landing page
 
 ## Issue
 * ``` $config['use_page_numbers'] ``` dosen't work properly [SOLVED]
-* Not really an issue, search uses session instead of query string, just option
+* Not really an issue, search uses session instead of query string, just option [SOLVED] -> uses query string
 
 ![Semangat!](https://i.pinimg.com/originals/7a/d2/81/7ad2818cd9713097dbdbfd20ff4b08dd.png)

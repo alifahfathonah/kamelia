@@ -53,21 +53,35 @@ CREATE TABLE  kegiatan (
  CONSTRAINT fk_user_id FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE SET NULL
 );
 
-CREATE TABLE  artikel (
+CREATE TABLE kategori (
+	id int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nama varchar(255)
+);
+
+
+CREATE TABLE artikel (
  id int(10) unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
  user_id int(10) unsigned,
+ kategori_id int(10) unsigned,
  judul varchar(255) NOT NULL,
  slug varchar(255) NOT NULL,
  isi text NOT NULL,
  thumbnail varchar(255) NOT NULL,
- dibuat TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+ dibuat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ CONSTRAINT fk_artikel_kategori_id FOREIGN KEY (kategori_id) REFERENCES kategori (id) ON DELETE SET NULL,
  CONSTRAINT fk_artikel_user_id FOREIGN KEY (user_id) REFERENCES user (id) ON DELETE SET NULL
 );
+
 
 INSERT INTO jenis (nama)
 VALUES
 ('training'),
 ('seminar');
+
+INSERT INTO kategori (nama)
+VALUES
+('berita'),
+('essay');
 
 INSERT INTO user (username, password, nama, email, role) 
 VALUES

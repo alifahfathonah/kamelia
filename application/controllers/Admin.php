@@ -259,8 +259,9 @@ class Admin extends CI_Controller
             // di redirect ke halaman list artikel admin
             redirect(site_url('admin/artikel'));
         }
+        $data["kategori"] = $artikel->kategori();
         // jika pertama kali buka akan menampilkan halaman addkegiatan.php dan mengirim data yang akan digunakan di view
-        $this->load->view("artikel/add.php");
+        $this->load->view("artikel/add.php", $data);
     }
 
     public function updateArtikel($id)
@@ -291,6 +292,7 @@ class Admin extends CI_Controller
         $data["artikel"] = $artikel->getById($id);
         // inisiasi 'role' untuk tahu yang login role sebagai admin atau user biasa
         $data["role"] = $this->session->userdata('role');
+        $data["kategori"] = $artikel->kategori();
 
         if (!$data["artikel"]) {
             show_404();

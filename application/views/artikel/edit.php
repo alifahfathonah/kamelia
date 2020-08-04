@@ -1,7 +1,13 @@
-<html>
+<!DOCTYPE html>
 <head>
 <title>Admin</title>
 <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+      tinymce.init({
+        selector: 'textarea#isi'
+      });
+</script>
 </head>
 <body>
 
@@ -35,7 +41,16 @@
                     </div>
                     <div class="form-group">
                         <label for="isi">Konten</label>
-                        <textarea class="form-control" name="isi" rows="3"><?= $artikel->isi ?></textarea>
+                        <textarea class="form-control" id="isi" name="isi" rows="3"><?= $artikel->isi ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Kategori Tulisan</label>
+                        <select class="form-control" name="kategori_id">
+                            <option value="" selected hidden disabled>Pilih Kategori</option>
+                            <?php foreach ($kategori as $kat): ?>
+                            <option <?php if ($artikel->kategori_id == $kat->id ) echo 'selected' ; ?> value="<?php echo $kat->id; ?>" ><?php echo ucfirst($kat->nama);?> </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <input type="hidden" name="old_thumbnail" value="<?= $artikel->thumbnail ?>">
                     <div class="form-group">

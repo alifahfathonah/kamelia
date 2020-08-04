@@ -44,6 +44,7 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Isi</th>
+                        <th>Kategori</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -53,6 +54,13 @@
                         <td></td>
                         <td><?=$art->judul?></td>
                         <td><?= substr(strip_tags($art->isi), 0, 100) ?>...</td>
+                        <td>
+                            <?php if ($art->kategori_id == 1): ?>
+                            Berita
+                            <?php else: ?>
+                            Esai
+                            <?php endif; ?>
+                        </td>
                         <td style='white-space: nowrap'>
                             <a href="<?= site_url('/admin/artikel/edit/'.$art->id) ?>" 
                             class="btn btn-primary">Edit</a>

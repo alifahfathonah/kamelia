@@ -55,8 +55,12 @@ $route['translate_uri_dashes'] = FALSE;
 // main
 $route['/'] = 'main/index';
 $route['calendar'] = 'main/calendar';
-$route['artikel'] = 'main/artikel';
-$route['artikel/(:any)'] = 'main/artikelSingle/$1';
+// $route['artikel'] = 'main/artikel';
+// $route['artikel/(:any)'] = 'main/artikelSingle/$1';
+$route['berita'] = 'main/berita';
+$route['berita/(:any)'] = 'main/beritaSingle/$1';
+$route['esai'] = 'main/esai';
+$route['esai/(:any)'] = 'main/esaiSingle/$1';
 // route auth
 $route['auth'] = 'auth/index';
 $route['login'] = 'auth/login';

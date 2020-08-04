@@ -8,12 +8,13 @@ class Artikel_model extends CI_Model
     }
 
     // define table
-    private $_table      = "artikel";
-    private $_table_user = "user";
+    private $_table          = "artikel";
+    private $_table_kategori = "kategori";
     // definisi variabel yang sesuai dengan nama kolom di tabel user
     public $user_id;
     public $judul;
     public $isi;
+    public $kategori_id;
     public $thumbnail;
 
     // aturan untuk validasi input
@@ -28,6 +29,21 @@ class Artikel_model extends CI_Model
                 'label'  => 'Konten',
                 'rules'  => 'required'],
         ];
+    }
+
+    public function getSlider()
+    {
+        return $this->db->order_by('dibuat', 'desc')->get($this->_table, 5)->result();
+    }
+
+    public function getColumnBerita()
+    {
+        return $this->db->order_by('dibuat', 'desc')->where('kategori_id', 1)->get($this->_table, 3)->result();
+    }
+
+    public function getColumnEsai()
+    {
+        return $this->db->order_by('dibuat', 'desc')->where('kategori_id', 2)->get($this->_table, 3)->result();
     }
 
     public function save()
@@ -60,23 +76,28 @@ class Artikel_model extends CI_Model
         return $this->db->order_by('dibuat', 'desc')->get($this->_table)->result();
     }
 
-    public function allPaginationSearch($limit, $start, $search = "")
+    public function kategori()
+    {
+        return $this->db->get($this->_table_kategori)->result();
+    }
+
+    public function allPaginationSearch($limit, $start, $search = "", $kategori)
     {
         $this->db->select('*');
         $this->db->from('artikel');
 
         if ($search != '') {
             $this->db->like('judul', $search);
-            $this->db->or_like('isi', $search);
         }
 
         $this->db->limit($limit, $start)->order_by('dibuat', 'desc');
+        $this->db->where('kategori_id', $kategori);
         $query = $this->db->get();
 
         return $query->result();
     }
 
-    public function getRecordCount($search = '')
+    public function getRecordCount($search = '', $kategori)
     {
 
         $this->db->select('count(*) as allcount');
@@ -84,8 +105,8 @@ class Artikel_model extends CI_Model
 
         if ($search != '') {
             $this->db->like('judul', $search);
-            $this->db->or_like('isi', $search);
         }
+        $this->db->where('kategori_id', $kategori);
 
         $query  = $this->db->get();
         $result = $query->result_array();
@@ -110,9 +131,10 @@ class Artikel_model extends CI_Model
         // ambil input yang metodenya post
         $post = $this->input->post();
         // diinisiasi di variabel yang sudah ditulis di atas
-        $this->user_id = $this->session->userdata("userid");
-        $this->judul   = $post["judul"];
-        $this->isi     = $post["isi"];
+        $this->user_id     = $this->session->userdata("userid");
+        $this->judul       = $post["judul"];
+        $this->isi         = $post["isi"];
+        $this->kategori_id = $post["kategori_id"];
         if (!empty($_FILES["thumbnail"]["name"])) {
             $this->thumbnail = $this->_uploadImage();
         } else {
