@@ -140,7 +140,7 @@
                     </figure>
 
                     <div class="portfolio-info">
-                        <h4><a href="<?= site_url('berita/').$value->slug ?>"><?= $value->judul ?></a></h4>
+                        <h4><a href="<?= site_url('berita/').$value->slug ?>"><?= substr(strip_tags($value->judul), 0, 84) ?></a></h4>
                         
                     </div>
                 </div>
@@ -176,7 +176,7 @@
                         </figure>
 
                         <div class="portfolio-info">
-                            <h4><a href="<?= site_url('esai/').$value->slug ?>"><?= $value->judul ?></a></h4>
+                            <h4><a href="<?= site_url('esai/').$value->slug ?>"><?= substr(strip_tags($value->judul), 0, 84) ?></a></h4>
                             
                         </div>
                     </div>
